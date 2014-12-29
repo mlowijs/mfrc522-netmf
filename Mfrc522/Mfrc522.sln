@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfrc522Test", "Mfrc522Test\Mfrc522Test.csproj", "{4A44EF9D-DC48-409E-91F4-DE13539D2340}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfrc522Lib", "Mfrc522Lib\Mfrc522Lib.csproj", "{86DF1317-443B-4704-8F4E-A12DB23DC66F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A44EF9D-DC48-409E-91F4-DE13539D2340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A44EF9D-DC48-409E-91F4-DE13539D2340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A44EF9D-DC48-409E-91F4-DE13539D2340}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4A44EF9D-DC48-409E-91F4-DE13539D2340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A44EF9D-DC48-409E-91F4-DE13539D2340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A44EF9D-DC48-409E-91F4-DE13539D2340}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{86DF1317-443B-4704-8F4E-A12DB23DC66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86DF1317-443B-4704-8F4E-A12DB23DC66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86DF1317-443B-4704-8F4E-A12DB23DC66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86DF1317-443B-4704-8F4E-A12DB23DC66F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
