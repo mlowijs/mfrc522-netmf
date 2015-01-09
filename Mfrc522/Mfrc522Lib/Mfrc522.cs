@@ -146,9 +146,9 @@ namespace Mfrc522Lib
 
         protected void Transceive(bool enableCrc, params byte[] data)
         {
-            // Enable CRC
             if (enableCrc)
             {
+                // Enable CRC
                 SetRegisterBits(Registers.TxMode, 0x80);
                 SetRegisterBits(Registers.RxMode, 0x80);
             }
