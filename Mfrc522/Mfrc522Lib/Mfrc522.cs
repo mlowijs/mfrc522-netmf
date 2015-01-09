@@ -111,6 +111,7 @@ namespace Mfrc522Lib
             if (ReadFromFifo() != PiccResponses.Acknowledge)
                 return false;
 
+            // Make sure we write only 16 bytes
             var buffer = new byte[16];
             data.CopyTo(buffer, 0);
 
