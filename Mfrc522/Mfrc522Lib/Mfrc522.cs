@@ -9,9 +9,6 @@ namespace Mfrc522Lib
     {
         private OutputPort _resetPowerDown, _ss;
         private SPI _spi;
-        private int _absentCount;
-
-        public Uid Uid { get; protected set; }
 
         public Mfrc522(SPI.SPI_module spiDevice, Cpu.Pin resetPowerDownPin, Cpu.Pin ssPin)
         {
@@ -41,30 +38,6 @@ namespace Mfrc522Lib
         }
 
 
-        public bool IsNewTagPresent()
-        {
-            if (IsTagPresent())
-            {
-                var newUid = ReadUid();
-
-                if (newUid.IsValid && !newUid.Equals(Uid))
-                {
-                    Uid = newUid;
-                    return true;
-                }
-                
-                _absentCount = 0;
-            }
-            else if (Uid != null && ++_absentCount >= 2)
-            {
-                Uid = null;
-                _absentCount = 0;
-            }
-
-            return false;
-        }
-
-
         public bool IsTagPresent()
         {
             // Enable short frames
@@ -78,6 +51,21 @@ namespace Mfrc522Lib
 
             // Check if we found a card
             return GetFifoLevel() == 2 && ReadFromFifoShort() == PiccResponses.AnswerToRequest;
+        }
+
+        public Uid ReadUid()
+        {
+            // Run the anti-collision loop on the card
+            Transceive(false, PiccCommands.Anticollision_1, PiccCommands.Anticollision_2);
+
+            // Return tag UID from FIFO
+            return new Uid(ReadFromFifo(5));
+        }
+
+        public void HaltTag()
+        {
+            // Transceive the Halt command to the tag
+            Transceive(false, PiccCommands.Halt_1, PiccCommands.Halt_2);
         }
 
         public bool SelectTag(Uid uid)
@@ -129,17 +117,7 @@ namespace Mfrc522Lib
             Transceive(true, buffer);
 
             return ReadFromFifo() == PiccResponses.Acknowledge;
-        }
-
-
-        protected Uid ReadUid()
-        {
-            // Run the anti-collision loop on the card
-            Transceive(false, PiccCommands.Anticollision_1, PiccCommands.Anticollision_2);
-
-            // Return tag UID from FIFO
-            return new Uid(ReadFromFifo(5));
-        }
+        }      
 
 
         protected void MifareAuthenticate(byte command, byte blockNumber, Uid uid, byte[] key)
